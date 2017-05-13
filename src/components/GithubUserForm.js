@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import TextField from "material-ui/TextField";
 import { githubApiRoot } from "../constants";
+import GithubStarsTable from "./GithubStarsTable";
 
 class GithubUserForm extends Component {
   constructor(props) {
@@ -7,7 +9,7 @@ class GithubUserForm extends Component {
 
     this.state = {
       username: "kalinchernev",
-      orgs: []
+      repos: []
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -21,9 +23,9 @@ class GithubUserForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { username } = this.state;
-    fetch(`${githubApiRoot}/users/${username}/orgs`)
+    fetch(`${githubApiRoot}/users/${username}/starred`)
       .then(res => res.json())
-      .then(orgs => this.setState({ orgs }))
+      .then(repos => this.setState({ repos }))
       .catch(ex => console.log("parsing failed", ex));
     this.setState({ username: "" });
   }
@@ -31,26 +33,17 @@ class GithubUserForm extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username:</label>
-          <input
+        <form onSubmit={this.handleSubmit} className="container">
+          <TextField
+            hintText="octocat"
+            floatingLabelText="Username:"
             onChange={this.handleChange}
             type="text"
             id="username"
-            placeholder="kalinchernev"
             value={this.state.username}
           />
-          <button type="submit">Check</button>
         </form>
-        <div className="results">
-          {this.state.orgs.length
-            ? <ul>
-                {this.state.orgs.map((org, key) => (
-                  <li key={key}>{org.login}</li>
-                ))}
-              </ul>
-            : <p>Either there's nothing, or you haven't entered anything</p>}
-        </div>
+        <GithubStarsTable repos={this.state.repos} />
       </div>
     );
   }

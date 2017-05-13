@@ -1,14 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import GithubUserForm from "./components/GithubUserForm";
+import "./App.css";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <GithubUserForm />
-      </div>
-    );
-  }
-}
+const App = () => (
+  <MuiThemeProvider>
+    <GithubUserForm />
+  </MuiThemeProvider>
+);
 
 export default App;
