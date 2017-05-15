@@ -27,7 +27,6 @@ class GithubUserForm extends Component {
       .then(res => res.json())
       .then(repos => this.setState({ repos }))
       .catch(ex => console.log("parsing failed", ex));
-    this.setState({ username: "" });
   }
 
   render() {
@@ -39,7 +38,6 @@ class GithubUserForm extends Component {
             floatingLabelText="Username:"
             onChange={this.handleChange}
             type="text"
-            id="username"
             value={this.state.username}
           />
         </form>
