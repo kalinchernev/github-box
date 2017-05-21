@@ -3,7 +3,7 @@ import TextField from "material-ui/TextField";
 import { githubApiRoot } from "../constants";
 import GithubReposList from "./GithubReposList";
 
-class GithubUserForm extends Component {
+class GithubForm extends Component {
   constructor(props) {
     super(props);
 
@@ -47,4 +47,4 @@ class GithubUserForm extends Component {
   }
 }
 
-export default GithubUserForm;
+export default GithubForm;
