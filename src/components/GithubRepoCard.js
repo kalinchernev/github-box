@@ -7,8 +7,7 @@ const GithubRepoCard = ({ repoData }) => (
   <Card>
     <CardHeader title={repoData.name} subtitle={repoData.description} />
     <CardActions>
-      <FlatButton label="View" />
-      <FlatButton label="Star" />
+      <FlatButton label="View" href={repoData.html_url} />
     </CardActions>
   </Card>
 );
