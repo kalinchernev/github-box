@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TextField from "material-ui/TextField";
 import { githubApiRoot } from "../constants";
-import GithubStarsTable from "./GithubStarsTable";
+import GithubReposList from "./GithubReposList";
 
 class GithubUserForm extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class GithubUserForm extends Component {
             value={this.state.username}
           />
         </form>
-        <GithubStarsTable repos={this.state.repos} />
+        <GithubReposList repos={this.state.repos} />
       </div>
     );
   }
